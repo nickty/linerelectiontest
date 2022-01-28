@@ -10,7 +10,7 @@ const Return = ({ returnProduct, setReturnProduct, dataSource }) => {
 
   function handleChange(value) {
     console.log(`selected ${value}`);
-    setRentPrice(value)
+    setRentPrice(value);
   }
 
   function onChange(date) {
@@ -23,14 +23,18 @@ const Return = ({ returnProduct, setReturnProduct, dataSource }) => {
     // set total days to state
     setDays(days);
     // mileage calculation
-    setMileage(days * 10)
+    setMileage(days * 10);
   }
 
   const handleOk = () => {
     setReturnProduct(false);
 
     // Showing calculation in a alert box
-    alert(`Your estimated product price is: ${rentPrice * days} and Mileage is: ${mileage}`);
+    alert(
+      `Your estimated product price is: ${
+        rentPrice * days
+      } and Mileage is: ${mileage}`
+    );
   };
 
   return (

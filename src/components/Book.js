@@ -14,21 +14,11 @@ const Book = ({ book, setBook, dataSource }) => {
     setRentPrice(e);
   }
 
-  // function confirm(e) {
-  //   console.log(e);
-
-  //   message.success("Your estimated product price is: ", rentPrice * days);
-  // }
-
-  // function cancel(e) {
-  //   console.log(e);
-  //   message.error("Click on No");
-  // }
 
   const handleOk = () => {
     setBook(false);
 
-    // Showing calculation in a alert box
+    // Showing calculation in a alert boxs
     alert(`Your estimated product price is: ${rentPrice * days}`);
   };
   function onChange(date) {
