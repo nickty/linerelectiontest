@@ -10,7 +10,7 @@ const FlexBox = styled.div`
   padding: 20px;
   border: 1px solid palevioletred;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 
@@ -238,7 +238,7 @@ export default function Main() {
         const currValue = e.target.value;
         setValue(currValue);
         const filteredData = data.filter(entry =>
-          entry.name.includes(currValue)
+          entry.name.includes(currValue.toLowerCase())
         );
         setDataSource(filteredData);
       }}
@@ -287,8 +287,10 @@ export default function Main() {
   return (
     <FlexBox>
       <Table columns={columns} dataSource={dataSource} />
+      <div style={{display: 'inline'}}>
       <Button onClick={() => setBook(true)} type="primary">Book</Button>
       <Button onClick={() => setReturnProduct(true)}>Return</Button>
+      </div>
       {/* Showing modals based on condition */}
       {book && (<Book book={book} setBook={setBook} dataSource={dataSource}/>)}
       {returnProduct && (<Return returnProduct={returnProduct} setReturnProduct={setReturnProduct} dataSource={dataSource}/>)}

@@ -7,11 +7,13 @@ const Book = ({ book, setBook, dataSource }) => {
   const [rentPrice, setRentPrice] = useState(0);
   const [days, setDays] = useState(0);
 
-  function handleChange(e) {
-    console.log(`selected ${e}`);
+  function handleChange([e]) {
+    console.log(`selected ${e.name}`);
 
     //set calculated price to state
-    setRentPrice(e);
+    setRentPrice(e.price);
+    // console.log(index)
+    
   }
 
 
@@ -41,18 +43,17 @@ const Book = ({ book, setBook, dataSource }) => {
       <Select
         defaultValue="Book a product"
         style={{ width: 450 }}
-        onChange={(e) => handleChange(e)}
+        onChange={handleChange}
       >
         {dataSource.map((single) => (
-          <Option key={single.code} value={single.price}>
+          <Option key={single.code} value={single}>
             {single.name}
-            <br />
-            {single.mileage && "Mileage ="}
-            {single.mileage && single.mileage}
-            {single.mileage && <br />}
-            Rental Period = {single.minimum_rent_period}
-            <br />
-            Need to Fix = {single.needing_repair ? "Yes" : "No"}
+            
+            {/* {single.mileage}
+           
+            {single.minimum_rent_period}
+          
+            {single.needing_repair} */}
           </Option>
         ))}
       </Select>
