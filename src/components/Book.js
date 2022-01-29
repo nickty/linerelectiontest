@@ -29,6 +29,12 @@ const Book = ({ book, setBook, dataSource }) => {
   const handleOk = () => {
     setBook(false);
 
+    if(days < minrent){
+      alert(`Minimum rental priod is: ${minrent} day/days, but you selected: ${days} day/days`)
+      return
+    }  
+    
+
     // Showing calculation in a alert boxs
     alert(`Your estimated product price is: ${rentPrice * days}`);
   };
@@ -40,7 +46,7 @@ const Book = ({ book, setBook, dataSource }) => {
     // check if days is counting correctly or not
     console.log(days);
     // set total days to state
-    setDays(days);
+    setDays(days + 1);
   }
   return (
     <Modal
@@ -71,6 +77,7 @@ const Book = ({ book, setBook, dataSource }) => {
       <br />
       {visible && (
         <div style={{ backgroundColor: "#f1f1f1", padding: "10px" }}>
+          <p>Price: {rentPrice && rentPrice}</p>
           <p>Mileage: {mileage ? mileage : "No Mileage info"}</p>
 
           <p>Minimum Rent Priod: {minrent && minrent}</p>
