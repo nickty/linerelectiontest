@@ -6,16 +6,25 @@ const { RangePicker } = DatePicker;
 const Book = ({ book, setBook, dataSource }) => {
   const [rentPrice, setRentPrice] = useState(0);
   const [days, setDays] = useState(0);
+  const [name, setName] = useState("");
+  const [mileage, setMileage] = useState("");
+  const [minrent, setMinrent] = useState("");
+  const [needrepair, setNeedRepair] = useState(false);
 
-  function handleChange([e]) {
-    console.log(`selected ${e.name}`);
+  const [visible, setVisible] = useState(false);
+
+  function handleChange(e, index) {
+    console.log(`selected ${e}`);
 
     //set calculated price to state
-    setRentPrice(e.price);
-    // console.log(index)
-    
-  }
+    setRentPrice(e);
+    setName(index.name);
+    setMileage(index.mileage);
+    setMinrent(index.minrent);
+    setNeedRepair(index.needrepair);
 
+    setVisible(true);
+  }
 
   const handleOk = () => {
     setBook(false);
@@ -43,21 +52,33 @@ const Book = ({ book, setBook, dataSource }) => {
       <Select
         defaultValue="Book a product"
         style={{ width: 450 }}
-        onChange={handleChange}
+        onChange={(e, index) => handleChange(e, index)}
       >
         {dataSource.map((single) => (
-          <Option key={single.code} value={single}>
+          <Option
+            key={single.code}
+            value={single.price}
+            name={single.name}
+            mileage={single.mileage}
+            minrent={single.minimum_rent_period}
+            needrepair={single.needing_repair}
+          >
             {single.name}
-            
-            {/* {single.mileage}
-           
-            {single.minimum_rent_period}
-          
-            {single.needing_repair} */}
           </Option>
         ))}
       </Select>
       <br />
+      <br />
+      {visible && (
+        <div style={{ backgroundColor: "#f1f1f1", padding: "10px" }}>
+          <p>Mileage: {mileage ? mileage : "No Mileage info"}</p>
+
+          <p>Minimum Rent Priod: {minrent && minrent}</p>
+
+          <p>Need to Repair: {needrepair ? "Yes" : "No"}</p>
+        </div>
+      )}
+
       <br />
 
       <Space direction="vertical" size={12}>
