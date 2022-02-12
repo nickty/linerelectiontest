@@ -282,6 +282,7 @@ export default function Main() {
     {
       title: 'Mileage',
       dataIndex: 'mileage',
+      render: (mileage) => (mileage ? mileage : 'No Mileage Available'),
       key: 'mileage',
     },
   ];
